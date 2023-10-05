@@ -170,7 +170,8 @@ class _CameraState extends State<Camera> {
           }
         },
       ),
-      floatingActionButton: Center(
+      floatingActionButton: Align(
+        alignment: Alignment.bottomCenter,
         child: FloatingActionButton(
           onPressed: _captureImage,
           child: const Icon(Icons.camera),

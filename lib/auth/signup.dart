@@ -182,17 +182,20 @@ class _SignupState extends State<Signup> {
                         controller: _idController,
                         decoration: Style.textdesign.copyWith(
                           labelText: _roleController.text == 'Establishment'
-                              ? 'Location'
+                              ? 'Room number'
                               : 'ID',
-                          suffixIcon: _roleController.text == 'Establishment'
-                              ? IconButton(
-                                  icon: const Icon(Icons.location_pin),
-                                  onPressed: () {
-                                    getCurrentPosition();
-                                    // _idController.text = id;
-                                  },
-                                )
-                              : IconButton(
+                          suffixIcon: 
+                          // _roleController.text == 'Establishment'
+                          //     ? 
+                          //     IconButton(
+                          //         icon: const Icon(Icons.location_pin),
+                          //         onPressed: () {
+                          //           getCurrentPosition();
+                          //           // _idController.text = id;
+                          //         },
+                          //       )
+                          //     : 
+                              IconButton(
                                   icon: const Icon(Icons.refresh),
                                   onPressed: () {
                                     String id = generateId();

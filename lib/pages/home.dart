@@ -97,33 +97,7 @@ class _Home extends State {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
-        floatingActionButton: StreamBuilder<UserModel>(
-            stream: _userStreamController.stream,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final user = snapshot.data!;
-                final role = user.role;
-                final section = user.section;
-                final estab = user.establishment;
-                if ((section == "0" || estab == "0") ||
-                    estab == "0" && section == "0") {
-                  return FloatingActionButton(
-                    onPressed: () async {
-                      if (_currentIndex == 0) {
-                        bottomsheet(role, section, estab);
-                      } else {
-                        const purpose = "Logout";
-
-                        await logout(context, purpose);
-                      }
-                    },
-                    child: Icon(
-                        _currentIndex == 0 ? Icons.add : Icons.exit_to_app),
-                  );
-                }
-              }
-              return const SizedBox();
-            }),
+        
         drawer: Navbar(onMenuItemTap: _onMenuItemTap),
         appBar: AppBar(
           title: Text(_currentIndex == 0 ? "Dashboard" : "Profile"),
@@ -154,69 +128,5 @@ class _Home extends State {
     );
   }
 
-  Future bottomsheet(String role, String section, String estab) async {
-    showAdaptiveActionSheet(
-        context: context,
-        title: Text(role == 'Student' ? 'Join' : 'Create'),
-        androidBorderRadius: 20,
-        actions: role == 'Student'
-            ? <BottomSheetAction>[
-                BottomSheetAction(
-                    title: const Text(
-                      'Section',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontFamily: "NexaBold"),
-                    ),
-                    onPressed: (context) {
-                      String purpose = "Section";
-                      Navigator.of(context).pop(false);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Join(
-                              role: role,
-                              purpose: purpose,
-                              refreshCallback: _refreshData)));
-                    }),
-                BottomSheetAction(
-                    title: const Text(
-                      'Establishment',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontFamily: "NexaBold"),
-                    ),
-                    onPressed: (context) {
-                      String purpose = "Establishment";
-                      Navigator.of(context).pop(false);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Join(
-                              role: role,
-                              purpose: purpose,
-                              refreshCallback: _refreshData)));
-                    }),
-              ]
-            : role == 'Admin' || role == 'Establishment'
-                ? <BottomSheetAction>[
-                    BottomSheetAction(
-                        title: Text(
-                          role == 'Admin' ? 'Section' : 'Establishment',
-                          style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontFamily: "NexaBold"),
-                        ),
-                        onPressed: (context) {
-                          String purpose =
-                              role == 'Admin' ? 'Section' : 'Establishment';
-                          Navigator.of(context).pop(false);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Join(
-                                  role: role,
-                                  purpose: purpose,
-                                  refreshCallback: _refreshData)));
-                        }),
-                  ]
-                : List.empty());
-  }
+
 }
