@@ -119,9 +119,11 @@ class _LoginState extends State<Login> {
                           ),
                           TextButton(
                             onPressed: () async {
+                              
                               final email = _emailController.text.trim();
                               final password = _passController.text.trim();
                               await login(context, email, password);
+                              print("Clicked");
                             },
                             autofocus: true,
                             style: TextButton.styleFrom(
