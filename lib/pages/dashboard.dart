@@ -59,7 +59,7 @@ floatingActionButton:
                   FloatingActionButton(
                     onPressed: () async {
                      
-                        bottomsheet(user.role, user.section, user.establishment);
+                        bottomsheet(user.role, user.section_name, user.establishment_name);
                       
                     },
                     child: const Icon(
@@ -105,7 +105,7 @@ floatingActionButton:
                   FloatingActionButton(
                     onPressed: () async {
                      
-                        bottomsheet(user.role, user.section, user.establishment);
+                        bottomsheet(user.role, user.section_name, user.establishment_name);
                       
                     },
                     child: const Icon(
@@ -117,8 +117,8 @@ floatingActionButton:
                       ? 2
                       : 1,
                   itemBuilder: (context, index) {
-                    final section = user.section;
-                    final establishment = user.establishment;
+                    final section = user.section_name;
+                    final establishment = user.establishment_name;
                     return ContainerCard(
                       index: index,
                       section: section,

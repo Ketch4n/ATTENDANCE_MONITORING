@@ -2,6 +2,7 @@
 
 
 import 'package:attendance_monitoring/api/update_section.dart';
+import 'package:attendance_monitoring/pages/establishment.dart';
 import 'package:flutter/material.dart';
 
 import '../../style/style.dart';
@@ -47,12 +48,15 @@ class _ContainerCardState extends State<ContainerCard> {
     ];
     List<String> link = ['section', 'establishment'];
 
+    List<String> Navigate = ['Section','Establishment'];
+
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: Style.boxdecor
           .copyWith(borderRadius: const BorderRadius.all(Radius.circular(10))),
       child: InkWell(
         onTap: () {
+         
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => Section(
                     name: widget.section == "0"
@@ -65,7 +69,8 @@ class _ContainerCardState extends State<ContainerCard> {
                         : widget.establishment == "0"
                             ? sectionIMG
                             : imagePaths[widget.index % imagePaths.length],
-                  )));
+                  )))
+                  ;
         },
         child: Stack(
           children: <Widget>[
